@@ -1,0 +1,74 @@
+@import '../../../stylesheets/variables';
+
+.SignIn {
+  height: 100vh;
+  color: $white;
+  background: url(../../../images/banner.jpeg) no-repeat center center / cover;
+
+  .row {
+    height: 80vh;
+  }
+
+  &__form {
+    background: rgba($black, 0.9);
+    padding: 3rem;
+    border-radius: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+    }
+  }
+
+  &__gray {
+    color: gray;
+  }
+
+  &__input {
+    margin-top: 1rem;
+    width: 100%;
+    height: 3rem;
+    outline-width: 0;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+  }
+
+  &__button {
+    background: $red;
+    border: 0;
+    color: $white;
+    margin-top: 3rem;
+    width: 100%;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+  }
+
+  &__link {
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: $white;
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  }
+}

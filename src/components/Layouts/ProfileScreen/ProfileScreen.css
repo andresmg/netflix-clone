@@ -1,0 +1,61 @@
+.ProfileScreen {
+  background: #111;
+  color: #fff;
+}
+
+.ProfileScreen__row {
+  height: 100vh;
+}
+
+.ProfileScreen h1 {
+  font-weight: 400;
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.ProfileScreen small {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.ProfileScreen__content {
+  background: rgba(17, 17, 17, 0.9);
+}
+
+.ProfileScreen__avatar {
+  background: url(../../../images/avatar.png) no-repeat center top/contain;
+  padding: 6rem 0;
+}
+
+.ProfileScreen__userEmail {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ProfileScreen__plan {
+  margin: 3rem 0;
+}
+
+.ProfileScreen__button {
+  background: #e50914;
+  color: #fff;
+  padding: 0.4rem 1.6rem;
+  display: flex;
+  align-items: center;
+  border: 0;
+  outline-width: 0;
+  justify-content: center;
+}
+
+.ProfileScreen__button.current {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.ProfileScreen__button.exit {
+  width: 100%;
+  padding: 0.8rem;
+}

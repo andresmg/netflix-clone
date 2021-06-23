@@ -1,0 +1,132 @@
+.Banner {
+  height: 65rem;
+  color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 5;
+}
+
+.Banner__contents {
+  margin-left: 13rem;
+}
+
+.Banner__button {
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding: 0.8rem 2.4rem;
+  margin-right: 1rem;
+  background: rgba(17, 17, 17, 0.2);
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.Banner__button:hover {
+  color: #111;
+  background: #fff;
+  transition: all 200ms ease-in-out;
+}
+
+.Banner__button.play {
+  background: #fff;
+  color: #111;
+}
+
+.Banner__button.play:before {
+  content: '';
+  background: url(../../images/play.svg) no-repeat center center/contain;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.Banner__button.info:before {
+  content: '';
+  background: url(../../images/plus.svg) no-repeat center center/contain;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.Banner__button.trailer:before {
+  content: '';
+  background: url(../../images/popcorn.svg) no-repeat center center/contain;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.Banner__fadeBottom {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background-image: linear-gradient(rgba(17, 17, 17, 0) 0, rgba(17, 17, 17, 0.2) 70%, rgba(17, 17, 17, 0.96) 100%);
+  z-index: -1;
+}
+
+.Banner p {
+  font-size: 1.8rem;
+}
+
+.Banner h4 {
+  margin: 3rem 0;
+  font-size: 1.4rem;
+}
+
+.Banner__description {
+  line-height: 2rem;
+}
+
+.Banner__rating {
+  height: 2rem;
+}
+
+.Banner__star {
+  background: url(../../images/star.png) no-repeat center center/cover;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+
+.Banner__star.full {
+  background: url(../../images/star_full.png) no-repeat center center/cover;
+}
+
+.Banner__star.half {
+  background: url(../../images/star_half.png) no-repeat center center/cover;
+}
+
+.Banner__vote {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.Banner__vote span {
+  margin-left: 0.4rem;
+}
+
+@media (max-width: 576px) {
+  .Banner h1 {
+    font-size: 3.6rem;
+  }
+  .Banner h4 {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+  .Banner__contents {
+    margin-left: 0rem;
+  }
+}

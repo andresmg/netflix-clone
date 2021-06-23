@@ -1,0 +1,49 @@
+.Nav {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: fixed;
+  transition: all 500ms ease-in-out;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Nav__black {
+  background: #111;
+}
+
+.Nav__brand {
+  padding: 0;
+  background: url(http://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png) no-repeat center center/contain;
+  width: 20rem;
+  height: 5rem;
+  display: block;
+}
+
+.Nav__button {
+  color: #fff;
+  background: #e50914;
+  border: 0;
+  margin-right: 4rem;
+  padding: 0.4rem 2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.3rem;
+}
+
+.Nav__avatar {
+  width: 3rem;
+  height: 3rem;
+  background: url(../../images/avatar.png) no-repeat center center/cover;
+  border: 0;
+  outline-width: 0;
+  margin-right: 4rem;
+}
+
+@media (max-width: 576px) {
+  .Nav__brand {
+    width: 10rem;
+  }
+}

@@ -1,0 +1,63 @@
+@import '../../../stylesheets/variables';
+
+.ProfileScreen {
+  background: $black;
+  color: $white;
+
+  &__row {
+    height: 100vh;
+  }
+
+  h1 {
+    font-weight: 400;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+  }
+
+  small {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  &__content {
+    background: rgba($black, 0.9);
+  }
+
+  &__avatar {
+    background: url(../../../images/avatar.png) no-repeat center top / contain;
+    padding: 6rem 0;
+  }
+
+  &__userEmail {
+    color: $white;
+    background: rgba($white, 0.4);
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__plan {
+      margin: 3rem 0;
+  }
+
+  &__button {
+    background: $red;
+    color: $white;
+    padding: 0.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    border: 0;
+    outline-width: 0;
+    justify-content: center;
+
+    &.current {
+      color: $white;
+      background: rgba($white, 0.4);
+    }
+
+    &.exit {
+        width: 100%;
+        padding: 0.8rem;
+    }
+  }
+}
