@@ -13,12 +13,6 @@
   font-size: 3rem;
 }
 
-.ProfileScreen small {
-  display: block;
-  font-weight: 700;
-  font-size: 1rem;
-}
-
 .ProfileScreen__content {
   background: rgba(17, 17, 17, 0.9);
 }
@@ -48,11 +42,6 @@
   border: 0;
   outline-width: 0;
   justify-content: center;
-}
-
-.ProfileScreen__button.current {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.4);
 }
 
 .ProfileScreen__button.exit {

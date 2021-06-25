@@ -14,12 +14,6 @@
     font-size: 3rem;
   }
 
-  small {
-    display: block;
-    font-weight: 700;
-    font-size: 1rem;
-  }
-
   &__content {
     background: rgba($black, 0.9);
   }
@@ -49,11 +43,6 @@
     border: 0;
     outline-width: 0;
     justify-content: center;
-
-    &.current {
-      color: $white;
-      background: rgba($white, 0.4);
-    }
 
     &.exit {
         width: 100%;

@@ -4,10 +4,12 @@ import Nav from '../../Nav/Nav'
 import {auth} from '../../../firebase'
 import {useSelector} from 'react-redux'
 import {selectUser} from '../../../features/userSlice'
+import PlansScreen from '../PlansScreen/PlansScreen'
+
 
 function ProfileScreen() {
 
-const user = useSelector(selectUser)
+    const user = useSelector(selectUser)
 
     return (
 
@@ -21,23 +23,7 @@ const user = useSelector(selectUser)
                         <div className="ProfileScreen__info col-9">
                             <div className="row">
                                 <div className="ProfileScreen__userEmail col-12">{user.email}</div>
-                                <div className="col-12">
-                                    <b>Planes (Plan actual:  premium)</b>
-                                </div>
-                                <div className="col-12">
-                                    <div className="ProfileScreen__plan row justify-content-between">
-                                        <div className="col-6">Netflix Standar <small>1080p</small></div>
-                                        <button className="ProfileScreen__button col-6 text-right">Seleccionar</button>
-                                    </div>
-                                    <div className="ProfileScreen__plan row justify-content-between">
-                                        <div className="col-6">Netflix Basic <small>480p</small></div>
-                                        <button className="ProfileScreen__button col-6 text-right">Seleccionar</button>
-                                    </div>
-                                    <div className="ProfileScreen__plan row justify-content-between">
-                                        <div className="col-6">Netflix Premium <small>4k + HDR</small></div>
-                                        <button className="ProfileScreen__button current col-6 text-right" disabled>Plan actual</button>
-                                    </div>
-                                </div>
+                                <PlansScreen />
                                 <div className="col-12">
                                     <button className="ProfileScreen__button exit" onClick={() => auth.signOut()}>Salir</button>
                                 </div>

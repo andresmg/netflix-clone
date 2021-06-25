@@ -1,0 +1,37 @@
+.PlansScreen small {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.PlansScreen__plan {
+  margin: 3rem 0;
+}
+
+.PlansScreen__button {
+  background: #e50914;
+  color: #fff;
+  padding: 0.4rem 1.6rem;
+  display: flex;
+  align-items: center;
+  border: 0;
+  outline-width: 0;
+  justify-content: center;
+}
+
+.PlansScreen__button.current {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.PlansScreen__disabled {
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.PlansScreen__role {
+  display: block;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}

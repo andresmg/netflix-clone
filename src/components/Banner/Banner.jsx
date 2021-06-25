@@ -7,8 +7,6 @@ function Banner() {
 
     const [movie, setMovie] = useState([])
 
-    const base_url = 'https://image.tmdb.org/t/p/original/'
-
     useEffect(() => {
         async function fetchData() {
             const request = await axios.get(requests.fetchNetflixOriginals)
@@ -44,7 +42,7 @@ function Banner() {
 
     return (
         <header className="Banner" style={{
-            backgroundImage: `url(${base_url}${movie?.backdrop_path})`
+            backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie?.backdrop_path})`
         }}>
             <div className="container-fluid">
                 <div className="row">

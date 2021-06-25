@@ -6,8 +6,6 @@ function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
 
     const [movies, setMovies] = useState([])
 
-    const base_url = 'https://image.tmdb.org/t/p/original/'
-
     const truncate = (string, n) => {
         return string?.length > n ? string.substr(0, n - 1) + '...' : string
     }
@@ -22,8 +20,6 @@ function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
         fetchData()
     }, [fetchUrl])
 
-    console.log(movies)
-
     const getYear = (date) => {
         return date.split('-')[0]
     }
@@ -36,7 +32,7 @@ function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
                     ((isLargeRow && movie.poster_path) || (!isLargeRow && movie.backdrop_path)) &&
                     (
                         <div className={`Row__poster col-sm-1 col-3 ${isLargeRow && 'Row__poster_large'}`} key={movie.id} style={{
-                            backgroundImage: `url(${base_url}${isLargeRow ? movie.poster_path : movie.backdrop_path})`
+                            backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path})`
                         }}>
                             <div className="Row__poster__movieInfo">
                                 <h4>{movie?.original_name || movie?.name || movie?.title || movie?.original_tiitle} <span>({getYear(movie?.first_air_date || movie?.release_date)})</span></h4>
@@ -49,7 +45,7 @@ function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
                         </div>
                     )) : movies.slice(0, 10).map(movie =>
                         <div className="Row__poster col-sm-1 col-3 Row__poster__trending" key={movie.id} style={{
-                            backgroundImage: `url(${base_url}${movie.poster_path})`
+                            backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie.poster_path})`
                         }}></div>
                     )}
             </div>
