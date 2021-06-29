@@ -1,17 +1,19 @@
 import './PlansScreen.css'
-import React, {useEffect, useState} from 'react'
+import React, {createContext, useEffect, useState} from 'react'
 import db from '../../../firebase'
 import {useSelector} from 'react-redux'
 import {selectUser} from '../../../features/userSlice'
 import {loadStripe} from '@stripe/stripe-js'
 
+const userContext = createContext()
 
 function PlansScreen({isSubscribed}) {
 
     const [products, setProducts] = useState([])
     const user = useSelector(selectUser)
     const [subscription, setSubscription] = useState(null)
-    const [loading, setLoading] = useState(true)
+
+    const [hasSubscription] = useState(subscription)
 
 
     useEffect(() => {
@@ -50,7 +52,6 @@ function PlansScreen({isSubscribed}) {
                     })
                     setProducts(products)
                 })
-                setLoading(false)
             })
             .catch(error => console.log(error.message))
     }, [])
@@ -88,42 +89,41 @@ function PlansScreen({isSubscribed}) {
 
     return (
         <>
+            <userContext.Provider value={hasSubscription}>
+                <div className="PlansScreen">
+                    <div className="col-12">
+                        {subscription &&
+                            <>
+                                <b>Planes <span className="PlansScreen__role">Plan actual:  {subscription?.role}</span></b>
+                                <hr />
+                                {/* Se usa  .toLocaleDateString('en-GB') para que muestre la fecha en  formato dd/MM/YYYY */}
+                                {subscription && <p><b>Fecha de renovación</b> {new Date(subscription?.current_period_end * 1000).toLocaleDateString('en-GB')}</p>}
+                                <hr />
+                            </>
+                        }
+                    </div>
+                    <div className="col-12">
+                        {Object.entries(products).map(([productId, productData]) => {
 
-            <div className="PlansScreen">
-                <div className="col-12">
-                    {subscription &&
-                        <>
-                            <b>Planes <span className="PlansScreen__role">Plan actual:  {subscription?.role}</span></b>
-                            <hr />
-                            {/* Se usa  .toLocaleDateString('en-GB') para que muestre la fecha en  formato dd/MM/YYYY */}
-                            {subscription && <p><b>Fecha de renovación</b> {new Date(subscription?.current_period_end * 1000).toLocaleDateString('en-GB')}</p>}
-                            <hr />
-                        </>
-                    }
-                </div>
-                <div className="col-12">
-                    {Object.entries(products).map(([productId, productData]) => {
-
-                        const isCurrentPlan = productData.name?.toLowerCase().includes(subscription?.role)
-
-                        console.log(loading)
+                            const isCurrentPlan = productData.name?.toLowerCase().includes(subscription?.role)
 
                             return (
-                            <div className="PlansScreen__plan row justify-content-between" key={productId}>
-                                <div className="col-6">{productData.name} <small>{productData.description}</small></div>
-                                <button className={`${isCurrentPlan && 'PlansScreen__disabled'} PlansScreen__button col-4`} onClick={() => !isCurrentPlan && loadCheckOut(productData.prices.priceId)}>
-                                    {isCurrentPlan ? 'Plan actual' : 'Seleccionar plan'}
-                                </button>
-                            </div>
-                        )
-                    }
-                    )}
+                                <div className="PlansScreen__plan row justify-content-between" key={productId}>
+                                    <div className="col-6">{productData.name} <small>{productData.description}</small></div>
+                                    <button className={`${isCurrentPlan && 'PlansScreen__disabled'} PlansScreen__button col-4`} onClick={() => !isCurrentPlan && loadCheckOut(productData.prices.priceId)}>
+                                        {isCurrentPlan ? 'Plan actual' : 'Seleccionar plan'}
+                                    </button>
+                                </div>
+                            )
+                        }
+                        )}
+                    </div>
                 </div>
-            </div>
+            </userContext.Provider>
         </>
     )
 }
 
-
+export {userContext}
 export default PlansScreen
 

@@ -2,6 +2,7 @@ import './Row.css'
 import React, {useState, useEffect} from 'react'
 import axios from '../../api/tmdb'
 
+
 function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
 
     const [movies, setMovies] = useState([])
@@ -46,7 +47,7 @@ function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
                                             <div className="Row__star full"></div>
                                         </div>
                                     </div>
-                                    }
+                                }
                             </div>
                         )) : movies.slice(0, 10).map(movie =>
                             <div className="Row__poster col-sm-1 col-3 Row__poster__trending" key={movie.id} style={{

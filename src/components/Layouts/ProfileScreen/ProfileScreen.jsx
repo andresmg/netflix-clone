@@ -1,16 +1,20 @@
 import './ProfileScreen.css'
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import Nav from '../../Nav/Nav'
 import {auth} from '../../../firebase'
 import {useSelector} from 'react-redux'
 import {selectUser} from '../../../features/userSlice'
 import PlansScreen from '../PlansScreen/PlansScreen'
+import {userContext} from '../PlansScreen/PlansScreen'
 
 
 function ProfileScreen() {
 
     const user = useSelector(selectUser)
     const [subscription, setSubscription] = useState(null)
+
+    const context = useContext(userContext)
+    console.log(`AQUIIIIIIIIIIIII ESTA ${context}`)
 
 
     const isSubscribed = (data) => {
