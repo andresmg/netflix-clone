@@ -28,6 +28,12 @@
     background: rgba($white, 0.4);
     padding: 1rem;
     margin-bottom: 2rem;
+
+    span {
+      display: block;
+      font-size: 1.4rem;
+      opacity: .7;
+    }
   }
 
   &__plan {
@@ -47,6 +53,14 @@
     &.exit {
         width: 100%;
         padding: 0.8rem;
+    }
+
+    &.cancel {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1rem;
+      background: transparent;
+      border: solid 0.1rem $white;
     }
   }
 }

@@ -5,11 +5,14 @@ import {useSelector} from 'react-redux'
 import {selectUser} from '../../../features/userSlice'
 import {loadStripe} from '@stripe/stripe-js'
 
-function PlansScreen() {
+
+function PlansScreen({isSubscribed}) {
 
     const [products, setProducts] = useState([])
     const user = useSelector(selectUser)
     const [subscription, setSubscription] = useState(null)
+    const [loading, setLoading] = useState(true)
+
 
     useEffect(() => {
         db.collection('customers')
@@ -23,8 +26,11 @@ function PlansScreen() {
                         current_period_end: subscription.data().current_period_end.seconds,
                         current_period_start: subscription.data().current_period_start.seconds
                     })
+                    subscription?.data()?.role ? isSubscribed(subscription?.data()?.role) : console.log("don't have any subscription")
                 })
             })
+            .catch(error => console.log(error.message))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user.uid])
 
     useEffect(() => {
@@ -44,12 +50,14 @@ function PlansScreen() {
                     })
                     setProducts(products)
                 })
+                setLoading(false)
             })
             .catch(error => console.log(error.message))
     }, [])
 
-    console.log(products)
-    console.log(subscription)
+
+    // console.log(products)
+    // console.log(subscription)
 
     const loadCheckOut = async (priceId) => {
         const docRef = await db.collection('customers')
@@ -72,38 +80,50 @@ function PlansScreen() {
             if (sessionId) {
                 // We have a session, let's redirect to Checkout 
                 // Init Stripe
-                const stripe = await loadStripe("pk_test_51J5rRIKM1pag91uXGmrnwDlnui4n25TvrbatpxYCFk8Vtq1Io1H8Io1JNKAoLkomZXsZDrMm7csTjiVoDkze6G1M00wxonA9Cu")
+                const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_API_KEY)
                 stripe.redirectToCheckout({sessionId})
             }
         })
     }
 
     return (
-        <div className="PlansScreen">
-            <div className="col-12">
-                <b>Planes <span className="PlansScreen__role">Plan actual:  {subscription?.role}</span></b>
-                <hr />
-                <p><b>Renewal date</b> {subscription?.current_period_end}</p>
-                <hr />
-            </div>
-            <div className="col-12">
-                {Object.entries(products).map(([productId, productData]) => {
+        <>
 
-                    const isCurrentPlan = productData.name?.toLowerCase().includes(subscription?.role)
+            <div className="PlansScreen">
+                <div className="col-12">
+                    {subscription &&
+                        <>
+                            <b>Planes <span className="PlansScreen__role">Plan actual:  {subscription?.role}</span></b>
+                            <hr />
+                            {/* Se usa  .toLocaleDateString('en-GB') para que muestre la fecha en  formato dd/MM/YYYY */}
+                            {subscription && <p><b>Fecha de renovación</b> {new Date(subscription?.current_period_end * 1000).toLocaleDateString('en-GB')}</p>}
+                            <hr />
+                        </>
+                    }
+                </div>
+                <div className="col-12">
+                    {Object.entries(products).map(([productId, productData]) => {
 
-                    return (
-                        <div className="PlansScreen__plan row justify-content-between" key={productId}>
-                            <div className="col-6">{productData.name} <small>{productData.description}</small></div>
-                            <button className={`${isCurrentPlan && 'PlansScreen__disabled'} PlansScreen__button col-4`} onClick={() => !isCurrentPlan && loadCheckOut(productData.prices.priceId)}>
-                                {isCurrentPlan ? 'Plan actual' : 'Seleccionar plan'}
-                            </button>
-                        </div>
-                    )
-                }
-                )}
+                        const isCurrentPlan = productData.name?.toLowerCase().includes(subscription?.role)
+
+                        console.log(loading)
+
+                            return (
+                            <div className="PlansScreen__plan row justify-content-between" key={productId}>
+                                <div className="col-6">{productData.name} <small>{productData.description}</small></div>
+                                <button className={`${isCurrentPlan && 'PlansScreen__disabled'} PlansScreen__button col-4`} onClick={() => !isCurrentPlan && loadCheckOut(productData.prices.priceId)}>
+                                    {isCurrentPlan ? 'Plan actual' : 'Seleccionar plan'}
+                                </button>
+                            </div>
+                        )
+                    }
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
+
 export default PlansScreen
+

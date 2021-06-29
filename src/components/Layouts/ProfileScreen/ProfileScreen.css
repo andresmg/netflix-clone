@@ -29,6 +29,12 @@
   margin-bottom: 2rem;
 }
 
+.ProfileScreen__userEmail span {
+  display: block;
+  font-size: 1.4rem;
+  opacity: .7;
+}
+
 .ProfileScreen__plan {
   margin: 3rem 0;
 }
@@ -47,4 +53,12 @@
 .ProfileScreen__button.exit {
   width: 100%;
   padding: 0.8rem;
+}
+
+.ProfileScreen__button.cancel {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background: transparent;
+  border: solid 0.1rem #fff;
 }

@@ -2,10 +2,12 @@ import './Banner.css'
 import React, {useEffect, useState} from 'react'
 import axios from '../../api/tmdb'
 import requests from '../../api/Request'
+import Loading from '../Loading/Loading'
 
 function Banner() {
 
     const [movie, setMovie] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
@@ -15,7 +17,7 @@ function Banner() {
                 Math.floor(Math.random() * request.data.results.length - 1)
                 ]
             )
-
+            setLoading(false)
             return request
         }
         fetchData()
@@ -40,35 +42,40 @@ function Banner() {
 
     }
 
+    // console.log(movie)
+
     return (
-        <header className="Banner" style={{
-            backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie?.backdrop_path})`
-        }}>
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-12 col-sm-8 Banner__contents">
-                        <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
-                        <div className="d-flex">
-                            <button className="Banner__button play">Play trailer</button>
-                            <button className="Banner__button info">More info</button>
-                        </div>
-                        <h4 className="Banner__description col-12 col-sm-6">
-                            {truncate(movie?.overview, 150)}
-                        </h4>
-                        <div className="Banner__rating col-12 d-flex">
-                            {getRate((movie?.vote_average / 2))}
-                            <div className="Banner__star"></div>
-                            <div className="Banner__star"></div>
-                            <div className="Banner__star"></div>
-                            <div className="Banner__star"></div>
-                            <div className="Banner__star"></div>
-                            <div className="Banner__vote">{(movie?.vote_average / 2).toFixed(1)}<span>({movie?.vote_count} votes)</span></div>
+        <>
+            {loading && <Loading size="20" />}
+            <header className="Banner" style={{
+                backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie?.backdrop_path})`
+            }}>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12 col-sm-8 Banner__contents">
+                            <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
+                            <div className="d-flex">
+                                <button className="Banner__button play">Play trailer</button>
+                                <button className="Banner__button info">More info</button>
+                            </div>
+                            <h4 className="Banner__description col-12 col-sm-6">
+                                {truncate(movie?.overview, 150)}
+                            </h4>
+                            <div className="Banner__rating col-12 d-flex">
+                                {getRate((movie?.vote_average / 2))}
+                                <div className="Banner__star"></div>
+                                <div className="Banner__star"></div>
+                                <div className="Banner__star"></div>
+                                <div className="Banner__star"></div>
+                                <div className="Banner__star"></div>
+                                <div className="Banner__vote">{(movie?.vote_average / 2).toFixed(1)}<span>({movie?.vote_count} votes)</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="Banner__fadeBottom" />
-        </header>
+                <div className="Banner__fadeBottom" />
+            </header>
+        </>
     )
 }
 
