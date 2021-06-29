@@ -4,6 +4,7 @@ import axios from '../../api/tmdb'
 import requests from '../../api/Request'
 import Loading from '../Loading/Loading'
 import genres from '../../data/genres'
+import ModalVideo from "react-modal-video";
 
 function Banner() {
 
@@ -21,7 +22,7 @@ function Banner() {
             setLoading(false)
 
 
-            
+
 
             return request
         }
@@ -64,23 +65,23 @@ function Banner() {
 
     return (
         <>
-            {loading && <Loading size="20px" />}
-            <header className="Banner" style={{
+            <header className={loading ? "Banner Banner__loading" : "Banner"} style={{
                 backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie?.backdrop_path})`
             }}>
+                {loading && <Loading size="20px" />}
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12 col-sm-8 Banner__contents">
                             <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
                             <div className="genres">{getGenres(movie).map(el => <span className="Banner__genres">{el}</span>)}</div>
-                            <div className="d-flex">
+                            <div className={loading ? "d-none" : "d-flex"}>
                                 <button className="Banner__button play">Play trailer</button>
                                 <button className="Banner__button info">More info</button>
                             </div>
                             <h4 className="Banner__description col-12 col-sm-6">
                                 {truncate(movie?.overview, 150)}
                             </h4>
-                            <div className="Banner__rating col-12 d-flex">
+                            <div className={loading ? "d-none" : "Banner__rating col-12 d-flex"}>
                                 {getRate((movie?.vote_average / 2))}
                                 <div className="Banner__star"></div>
                                 <div className="Banner__star"></div>

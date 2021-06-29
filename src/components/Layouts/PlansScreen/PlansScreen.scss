@@ -8,8 +8,16 @@
     opacity: 0.6;
   }
 
+  &__loading {
+    height: 18rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__plan {
     margin: 3rem 0;
+    position: relative;
   }
 
   &__button {

@@ -3,6 +3,13 @@
   counter-reset: trending-counter;
 }
 
+.Row__loading {
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Row__posters {
   display: flex;
   overflow-x: scroll;

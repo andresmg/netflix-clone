@@ -11,6 +11,12 @@
   background-position: center;
   z-index: 5;
 
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__contents {
     margin-left: 13rem;
   }
