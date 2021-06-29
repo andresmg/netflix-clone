@@ -118,6 +118,21 @@
   margin-left: 0.4rem;
 }
 
+.Banner__genres {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin: 0 0 2rem 1rem;
+  text-transform: uppercase;
+}
+
+.Banner__genres:last-child::after {
+  content: '';
+}
+
+.Banner__genres:after {
+  content: ',';
+}
+
 @media (max-width: 576px) {
   .Banner h1 {
     font-size: 3.6rem;

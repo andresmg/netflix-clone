@@ -126,6 +126,23 @@
       margin-left: 0.4rem;
     }
   }
+
+  &__genres {
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 0 0 2rem 1rem;
+    text-transform: uppercase;
+
+    &:last-child {
+      &::after {
+        content: '';
+      }
+    }
+
+    &:after {
+      content: ',';
+    }
+  }
 }
 
 @media (max-width: 576px) {

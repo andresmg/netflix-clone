@@ -1,20 +1,16 @@
 import './PlansScreen.css'
-import React, {createContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import db from '../../../firebase'
 import {useSelector} from 'react-redux'
 import {selectUser} from '../../../features/userSlice'
 import {loadStripe} from '@stripe/stripe-js'
 
-const userContext = createContext()
 
 function PlansScreen({isSubscribed}) {
 
     const [products, setProducts] = useState([])
     const user = useSelector(selectUser)
     const [subscription, setSubscription] = useState(null)
-
-    const [hasSubscription] = useState(subscription)
-
 
     useEffect(() => {
         db.collection('customers')
@@ -89,7 +85,6 @@ function PlansScreen({isSubscribed}) {
 
     return (
         <>
-            <userContext.Provider value={hasSubscription}>
                 <div className="PlansScreen">
                     <div className="col-12">
                         {subscription &&
@@ -119,11 +114,9 @@ function PlansScreen({isSubscribed}) {
                         )}
                     </div>
                 </div>
-            </userContext.Provider>
         </>
     )
 }
 
-export {userContext}
 export default PlansScreen
 

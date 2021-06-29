@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import axios from '../../api/tmdb'
 import requests from '../../api/Request'
 import Loading from '../Loading/Loading'
+import genres from '../../data/genres'
 
 function Banner() {
 
@@ -18,6 +19,10 @@ function Banner() {
                 ]
             )
             setLoading(false)
+
+
+            
+
             return request
         }
         fetchData()
@@ -44,9 +49,22 @@ function Banner() {
 
     // console.log(movie)
 
+    const getGenres = (movie) => {
+        const genresArr = []
+
+        for (let i = 0; i < genres?.genres?.length; i++) {
+            for (let j = 0; j < movie?.genre_ids?.length; j++) {
+                if (genres.genres[i].id === movie?.genre_ids[j]) {
+                    genresArr.push(genres.genres[i].name)
+                }
+            }
+        }
+        return genresArr
+    }
+
     return (
         <>
-            {loading && <Loading size="20" />}
+            {loading && <Loading size="20px" />}
             <header className="Banner" style={{
                 backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie?.backdrop_path})`
             }}>
@@ -54,6 +72,7 @@ function Banner() {
                     <div className="row">
                         <div className="col-12 col-sm-8 Banner__contents">
                             <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
+                            <div className="genres">{getGenres(movie).map(el => <span className="Banner__genres">{el}</span>)}</div>
                             <div className="d-flex">
                                 <button className="Banner__button play">Play trailer</button>
                                 <button className="Banner__button info">More info</button>
