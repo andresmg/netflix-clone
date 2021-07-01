@@ -4,12 +4,13 @@ import axios from '../../api/tmdb'
 import requests from '../../api/Request'
 import Loading from '../Loading/Loading'
 import genres from '../../data/genres'
-import ModalVideo from "react-modal-video";
+import ModalVideo from "react-modal-video"
 
-function Banner() {
+function Banner({onClick}) {
 
     const [movie, setMovie] = useState([])
     const [loading, setLoading] = useState(true)
+    const [playing, setPlaying] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
@@ -20,9 +21,6 @@ function Banner() {
                 ]
             )
             setLoading(false)
-
-
-
 
             return request
         }
@@ -48,8 +46,6 @@ function Banner() {
 
     }
 
-    // console.log(movie)
-
     const getGenres = (movie) => {
         const genresArr = []
 
@@ -65,6 +61,12 @@ function Banner() {
 
     return (
         <>
+            {playing && <ModalVideo
+                channel='youtube'
+                isOpen='true'
+                videoId={movie.id}
+                onClose={() => setPlaying(false)}
+            />}
             <header className={loading ? "Banner Banner__loading" : "Banner"} style={{
                 backgroundImage: `url(${process.env.REACT_APP_TMDB_IMAGE_BASE_URL}${movie?.backdrop_path})`
             }}>
@@ -75,8 +77,8 @@ function Banner() {
                             <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
                             <div className="genres">{getGenres(movie).map(el => <span className="Banner__genres">{el}</span>)}</div>
                             <div className={loading ? "d-none" : "d-flex"}>
-                                <button className="Banner__button play">Play trailer</button>
-                                <button className="Banner__button info">More info</button>
+                                <button className="Banner__button play" onClick={() => setPlaying(true)}>Play trailer</button>
+                                <button className="Banner__button info" onClick={() => onClick(movie.id)}>More info</button>
                             </div>
                             <h4 className="Banner__description col-12 col-sm-6">
                                 {truncate(movie?.overview, 150)}

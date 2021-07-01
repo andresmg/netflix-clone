@@ -1,1 +1,7 @@
-/* No CSS */
+.ShowInfo {
+  color: #fff;
+}
+
+.ShowInfo h2 {
+  font-size: 3rem;
+}

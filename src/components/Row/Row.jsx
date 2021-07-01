@@ -28,6 +28,8 @@ function Row({title, fetchUrl, isLargeRow = false, isTrending = false}) {
         return date.split('-')[0]
     }
 
+    // console.log(movies)
+
     return (
         <>
             <div className="Row row">
