@@ -5,12 +5,15 @@ import requests from '../../api/Request'
 import Loading from '../Loading/Loading'
 import genres from '../../data/genres'
 import ModalVideo from "react-modal-video"
+import {useHistory} from 'react-router-dom'
 
-function Banner({onClick}) {
+function Banner({onClick, hideInfo}) {
 
+    const history = useHistory()
     const [movie, setMovie] = useState([])
     const [loading, setLoading] = useState(true)
     const [playing, setPlaying] = useState(false)
+    const [showEpisodes, setShowEpisodes] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
@@ -77,8 +80,19 @@ function Banner({onClick}) {
                             <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
                             <div className="genres">{getGenres(movie).map(el => <span className="Banner__genres">{el}</span>)}</div>
                             <div className={loading ? "d-none" : "d-flex"}>
-                                <button className="Banner__button play" onClick={() => setPlaying(true)}>Play trailer</button>
-                                <button className="Banner__button info" onClick={() => onClick(movie.id)}>More info</button>
+                                {!showEpisodes ?
+                                    <button className="Banner__button play" onClick={() => setPlaying(true)}>Play trailer</button>
+                                    :
+                                    <button className="Banner__button back" onClick={() => {
+                                        hideInfo()
+                                        setShowEpisodes(!showEpisodes)
+                                        history.go('/')
+                                    }
+                                    }>Back to home</button>}
+                                {!showEpisodes && <button className="Banner__button info" onClick={() => {
+                                    onClick(movie.id)
+                                    setShowEpisodes(!showEpisodes)
+                                }}>More info</button>}
                             </div>
                             <h4 className="Banner__description col-12 col-sm-6">
                                 {truncate(movie?.overview, 150)}

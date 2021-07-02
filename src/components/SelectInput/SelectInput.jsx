@@ -8,7 +8,7 @@ function SelectInput({seasons, onChange}) {
         <select className="form-select SelectInput" aria-label="show seasons" onChange={onChange}>
             {
                 seasons?.map(el => 
-                    (<option value={el?.season_number} selected={el?.season_number === 1}>Temporada {el?.season_number}</option>)
+                    (<option value={el?.season_number} selected={el?.season_number === 1}>Season {el?.season_number}</option>)
                 )
             }
         </select>

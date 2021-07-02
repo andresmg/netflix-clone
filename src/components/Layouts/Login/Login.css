@@ -27,22 +27,39 @@
 .Login__form {
   margin-top: 2rem;
   font-size: 1.2rem;
+  position: relative;
+  width: 50%;
+  margin: auto;
 }
 
 .Login__input {
-  padding: 1rem;
+  padding: 0 1.8rem;
   outline-width: 0;
   border: 0;
-  height: 3rem;
-  width: 30%;
+  height: 5rem;
+  width: 100%;
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  border-radius: 0.4rem;
 }
 
 .Login__getStarted {
   background: #e50914;
   color: #fff;
-  height: 3rem;
-  padding: 0 2rem;
+  height: 5rem;
+  padding: 0 1.8rem;
   border: 0;
+  font-size: 1.6rem;
   font-weight: 400;
-  border-radius: 0.3rem;
+  border-radius: 0 0.3rem 0.3rem 0;
+  transition: all 200ms ease-in-out;
+  border-left: solid 0.1rem #e50914;
+  position: absolute;
+  top: 2rem;
+  right: 0;
+}
+
+.Login__getStarted:hover {
+  background: #fff;
+  color: #e50914;
 }

@@ -1,0 +1,101 @@
+.SeasonsScreen {
+  color: #fff;
+}
+
+.SeasonsScreen__red {
+  background: linear-gradient(-45deg, rgba(229, 9, 20, 0.7), #e50914);
+  color: #fff;
+  padding: 2rem 0;
+  margin-top: -12rem;
+  z-index: 5;
+  position: absolute;
+}
+
+.SeasonsScreen__red .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SeasonsScreen__season {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.SeasonsScreen__row {
+  margin: 0 0 2rem 0;
+  padding-bottom: 2rem;
+  border-bottom: solid 0.1rem rgba(229, 9, 20, 0.5);
+}
+
+.SeasonsScreen__row:first-child {
+  padding-top: 2rem;
+}
+
+.SeasonsScreen__img {
+  width: 100%;
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 1rem;
+}
+
+.SeasonsScreen__img:before {
+  content: '';
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  left: 50%;
+  margin-left: -2rem;
+  top: 50%;
+  margin-top: -2rem;
+  background: url(../../../images/play_white.svg) no-repeat center center/contain;
+  z-index: 999;
+  display: block;
+  border: solid 0.2rem #fff;
+  padding: 2rem;
+  border-radius: 3rem;
+  background-size: 2rem;
+  box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 0.8);
+}
+
+.SeasonsScreen__overview {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+.SeasonsScreen__epiCount {
+  font-size: 1.6rem;
+}
+
+.SeasonsScreen__vote {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.SeasonsScreen__rate {
+  position: relative;
+  border-bottom: solid 0.1rem #fff;
+  width: 50%;
+}
+
+.SeasonsScreen__rate small {
+  position: absolute;
+  border-radius: 1rem;
+  bottom: -2.4rem;
+  left: 0;
+}
+
+.SeasonsScreen__rate:after {
+  content: '';
+  width: 3.2rem;
+  height: 3.2rem;
+  background: url(../../../images/download.svg) no-repeat center center/contain;
+  display: block;
+  position: absolute;
+  right: -6rem;
+  top: 1.7rem;
+}

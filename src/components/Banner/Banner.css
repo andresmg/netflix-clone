@@ -54,6 +54,29 @@
   margin-right: 1rem;
 }
 
+.Banner__button.back {
+  background: #fff;
+  color: #111;
+}
+
+.Banner__button.back:before {
+  content: '';
+  background: url(../../images/play.svg) no-repeat center center/contain;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg);
+}
+
+.Banner__button.info {
+  border: solid 0.1rem #fff;
+}
+
+.Banner__button.info:hover:before {
+  background: url(../../images/plus_black.svg) no-repeat center center/contain;
+}
+
 .Banner__button.info:before {
   content: '';
   background: url(../../images/plus.svg) no-repeat center center/contain;

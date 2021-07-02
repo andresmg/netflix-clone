@@ -5,7 +5,7 @@ import Banner from '../../Banner/Banner'
 import Row from '../../Row/Row'
 import requests from '../../../api/Request'
 import axios from '../../../api/tmdb'
-import SeasonsScreen from '../../SeasonsScreen/SeasonsScreen'
+import SeasonsScreen from '../SeasonsScreen/SeasonsScreen'
 
 export default function HomeScreen() {
 
@@ -24,11 +24,12 @@ export default function HomeScreen() {
             .catch(error => console.log(error.message))
     }
 
+
     return (
         <div className="homeScreen">
             <Nav />
 
-            <Banner onClick={loadInfo} />
+            <Banner onClick={loadInfo} hideInfo={() => setShowInfo(!showInfo)}/>
 
             {!showInfo &&
                 <div className="container-fluid">
